@@ -1,7 +1,9 @@
- var path = require('path');
- var webpack = require('webpack');
+var path = require('path');
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
- module.exports = {
+module.exports = {
     entry: __dirname + '/public/src/app.js',
     output: {
         path: __dirname + '/public/build',
@@ -16,9 +18,19 @@
                 query: {
                     presets: ['es2015']
                 }
+            },
+            {
+                test: /\.scss$/,
+                loaders: ["style-loader", "css-loader", "sass-loader"]
             }
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'pers.php',
+            template: './public/src/test.html'
+        }),
+        new CleanWebpackPlugin(['./public/build'])
+    ],
     devtool: 'source-map'
- };
- 
+};
