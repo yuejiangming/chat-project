@@ -27,8 +27,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            filename: 'pers.php',
-            template: './public/src/test.html'
+            filename: 'main.blade.php',
+            template: './public/src/chat.template.html'
         }),
         new CleanWebpackPlugin(['./public/build'])
     ],

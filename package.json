@@ -20,5 +20,8 @@
     "sass-loader": "^6.0.2",
     "vue": "^2.1.10",
     "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "angular": "^1.6.2"
   }
 }
