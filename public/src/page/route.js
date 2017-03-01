@@ -7,6 +7,4 @@ export default function route($stateProvider) {
             controller: 'PageController as vm',
             url: '/'
         });
-
-        alert('guaile')
 };

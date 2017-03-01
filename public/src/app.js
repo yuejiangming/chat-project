@@ -1,13 +1,12 @@
 import angular from 'angular';
+import './scss/app.scss';
 
-var a = [1,2,3,4,5,6];
+import uiRouter from 'angular-ui-router';
 
-console.log('ha-ha-ha');
+import appConfig from "./core/appConfig";
 
 angular
-    .module('app', [])
-    .config(function() {
-        alert('ha-ha-ha-ha-ha-ha');
-    });
+    .module('app', [uiRouter])
+    .config(appConfig);
 
-
+require('./page');

@@ -1,5 +1,6 @@
-appConfig.$inject = [];
+appConfig.$inject = ['$locationProvider', '$urlRouterProvider'];
 
-export default function appConfig() {
-    console.log('我的一生是奋斗的一生什么的还是很伟大的嘛');
+export default function appConfig($locationProvider, $urlRouterProvider) {
+    $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise('/');
 };
