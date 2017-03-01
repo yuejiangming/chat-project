@@ -18,10 +18,10 @@
     "lodash": "^4.17.4",
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.2",
-    "vue": "^2.1.10",
-    "webpack": "^2.2.1"
+    "angular": "^1.5.0",
+    "angular-ui-router": "^0.4.2"
   },
   "dependencies": {
-    "angular": "^1.6.2"
+    "webpack": "^2.2.1"
   }
 }

@@ -8,7 +8,7 @@ module.exports = {
     output: {
         path: __dirname + '/public/build',
         filename: '[name].[hash].js',
-        publicPath: '/build/'
+        publicPath: '/build/'    
     },
     module: {
         loaders: [
