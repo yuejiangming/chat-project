@@ -26,7 +26,11 @@ module.exports = {
             {
                 test: /\.html$/,
                 loader: 'raw-loader'
-            }
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'file-loader'
+            }  
         ]
     },
     plugins: [
