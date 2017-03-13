@@ -16,7 +16,7 @@
         <span>悄悄话</span>
         <select ng-model="vm.selectedUser">
             <option value="all">所有人</option>
-            <option ng-repeat="(id, name) in vm.userList" value="id">{{name}}</option>
+            <option ng-repeat="(id, name) in vm.userList" value="{{id}}">{{name}}</option>
         </select>
     </div>
     <div class="input-container">

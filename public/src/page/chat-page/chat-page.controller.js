@@ -45,6 +45,17 @@ export default class ChatPageController{
                     contentContainer.scrollTop = contentContainer.scrollHeight - contentContainer.clientHeight;
                     break;
 
+                case 'message-private':
+                    var obj = {
+                        name: message.name,
+                        date: message.time,
+                        text: '悄悄说: ' + message.content
+                    }
+                    self.chatContent.push(obj);
+
+                    contentContainer.scrollTop = contentContainer.scrollHeight - contentContainer.clientHeight;
+                    break;
+
                 case 'user-list':
                     self.userList = message.content;
                     break;
@@ -70,10 +81,18 @@ export default class ChatPageController{
             return;
         }
 
-        json = JSON.stringify({
-            type: "sent-to-all",
-            content: this.userWord
-        });
+        if (this.selectedUser === 'all') {
+            json = JSON.stringify({
+                type: "sent-to-all",
+                content: this.userWord
+            });
+        } else {
+            json = JSON.stringify({
+                type: "sent-to-single",
+                target: this.selectedUser,
+                content: this.userWord
+            });
+        }
 
         this.socket.send(json);
         this.userWord = '';
