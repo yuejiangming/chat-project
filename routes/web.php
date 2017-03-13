@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('/build/main');
 });
+
+Route::get('{path?}', function() {
+    return view('/build/main');
+})->where('path', '.+');

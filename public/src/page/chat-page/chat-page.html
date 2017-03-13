@@ -1,1 +1,19 @@
-chatpage页面
+<div class="welcome-messege" ng-if="vm.userName!=null&&vm.userName!=''">欢迎,{{vm.userName}}</div>
+<div class="welcome-messege" ng-if="!(vm.userName!=null&&vm.userName!='')">您未填写姓名，不能使用</div>
+<div class="chat-container">
+    <div class="content-container">
+        <div class="content-item" ng-repeat="content in vm.chatContent">
+            <p class="status-messege">
+                <span>{{content.name}}</span>
+                <span>{{content.date}}</span>
+            </p>
+            <div class="item-content">
+                {{content.text}}
+            </div>
+        </div>
+    </div>
+    <div class="input-container">
+        <textarea ng-model="vm.userWord" class="input-area"></textarea>
+        <button class="input-button" ng-click="vm.submitWord()">提交</button>
+    </div>
+</div>
