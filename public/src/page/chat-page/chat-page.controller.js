@@ -58,9 +58,19 @@ export default class ChatPageController{
 
                 case 'user-list':
                     self.userList = message.content;
+                    dropSelf(self.userList);
                     break;
             }
             self.$scope.$apply();
+
+            function dropSelf(userList) {
+                var keys = Object.keys(userList);
+                keys.forEach((key) => {
+                    if(userList[key] === self.userName) {
+                       delete userList[key]; 
+                    }
+                });
+            }
         }
 
         function getUserName() {
