@@ -16,6 +16,7 @@ export default class ChatPageController{
         this.socket.onmessage = onmessage;
 
         this.chatContent = [];
+        this.selectedUser = 'all';
 
         var contentContainer = document.getElementsByClassName('content-container')[0];
         
@@ -30,6 +31,7 @@ export default class ChatPageController{
 
         function onmessage(evt) {
             var message = JSON.parse(evt.data);
+            console.log(message);
 
             switch(message.type) {
                 case 'message':
@@ -39,11 +41,15 @@ export default class ChatPageController{
                         text: message.content
                     }
                     self.chatContent.push(obj);
-                    self.$scope.$apply();
 
                     contentContainer.scrollTop = contentContainer.scrollHeight - contentContainer.clientHeight;
                     break;
+
+                case 'user-list':
+                    self.userList = message.content;
+                    break;
             }
+            self.$scope.$apply();
         }
 
         function getUserName() {
@@ -58,16 +64,18 @@ export default class ChatPageController{
     }
 
     submitWord() {
+        var json;
+
         if (this.userWord == null || this.userWord == '') {
             return;
         }
 
-        var json = JSON.stringify({
+        json = JSON.stringify({
             type: "sent-to-all",
             content: this.userWord
         });
-        this.socket.send(json);
 
+        this.socket.send(json);
         this.userWord = '';
     }
 }

@@ -7,11 +7,13 @@
     font-size: 20px;
     line-height: 50px;
     padding: 0 50px;
+    width: 800px;
+    margin: 0 auto;
 }
 .chat-container {
     border: 1px solid #aaa;
     width: 800px;
-    height: 600px;
+    height: 650px;
     margin: 0 auto 0 auto;
 
     .content-container {
@@ -48,5 +50,10 @@
             height: 149px;
         }
     }
-    
+    .instrument-bar {
+        height: 50px;
+        line-height: 50px;
+        padding: 0 20px;
+        border-bottom: 1px solid #ccc;
+    }
 }

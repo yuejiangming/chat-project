@@ -12,6 +12,13 @@
             </div>
         </div>
     </div>
+    <div class="instrument-bar">
+        <span>悄悄话</span>
+        <select ng-model="vm.selectedUser">
+            <option value="all">所有人</option>
+            <option ng-repeat="(id, name) in vm.userList" value="id">{{name}}</option>
+        </select>
+    </div>
     <div class="input-container">
         <textarea ng-model="vm.userWord" class="input-area"></textarea>
         <button class="input-button" ng-click="vm.submitWord()">提交</button>
