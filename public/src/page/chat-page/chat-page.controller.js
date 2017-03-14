@@ -12,14 +12,13 @@ export default class ChatPageController{
 
         this.socket.onopen = onopen;
         this.socket.onclose = onclose;
-        this.socket.onerror = onerror;
         this.socket.onmessage = onmessage;
 
         this.chatContent = [];
         this.selectedUser = 'all';
 
         var contentContainer = document.getElementsByClassName('content-container')[0];
-        
+
         function onopen() {
             var json = JSON.stringify({
                 type: 'connect',
