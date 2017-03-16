@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('/build/main');
 });
 
+Route::get('/login', 'AuthController@login');
+
+
 Route::get('{path?}', function() {
     return view('/build/main');
 })->where('path', '.+');
+
+Route::get('/home', 'HomeController@index');

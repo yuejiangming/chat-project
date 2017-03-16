@@ -1,7 +1,13 @@
 export default class LoginController{
-    constructor() {
-        console.log('开始载入login模块');
+    constructor($auth, $http) {
+        angular.extend(this, {$auth, $http});
+    }
+
+    login() {
+        this.$http.get('/login').then(function(data) {
+            console.log(data);
+        });
     }
 }
 
-LoginController.$inject = [];
+LoginController.$inject = ['$auth', '$http'];
