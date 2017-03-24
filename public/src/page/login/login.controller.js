@@ -26,7 +26,7 @@ export default class LoginController{
 
                 this.$auth.setToken(token);
 
-                this.$rootScope.userName = data.name;
+                this.$rootScope.nickname = data.nickname;
 
                 this.$state.go('chatpage');
             }

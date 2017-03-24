@@ -19,7 +19,7 @@
         </select>
     </div>
     <div class="input-container">
-        <textarea ng-model="vm.userWord" class="input-area"></textarea>
+        <textarea ng-model="vm.userWord" class="input-area" ng-keypress="vm.enterPress($event)"></textarea>
         <button class="input-button" ng-click="vm.submitWord()">提交</button>
     </div>
 </div>

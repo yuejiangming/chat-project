@@ -18,10 +18,11 @@ class AuthController extends Controller
         $credentials['name'] = $request->input('name');
         $credentials['password'] = $request->input('password');
 
-        $name = $credentials['name'];
 
         if ($token = JWTAuth::attempt($credentials)) {
-            return response()->json(compact('token', 'name'));
+            $nickname = User::where('name', $credentials['name'])->first()->nickname;
+
+            return response()->json(compact('token', 'nickname'));
         } else {
             return response()->json(['error' => 'message_not_valid']);
         }
@@ -31,11 +32,17 @@ class AuthController extends Controller
         $name = $request->input('name');
         $password = $request->input('password');
         $email = $request->input('email');
+        $nickname = $request->input('nickname');
+
+        if (User::where('name')->first()) {
+            return response()->json(['error' => 'dublicated_user_name']);
+        }
 
         $user = new User();
         $user->name = $name;
         $user->password = bcrypt($password);
         $user->email = $email;
+        $user->nickname = $nickname;
         $user->save();
 
         return 'success';

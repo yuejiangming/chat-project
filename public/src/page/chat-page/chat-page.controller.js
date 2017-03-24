@@ -4,7 +4,7 @@ export default class ChatPageController{
 
         var self = this;
 
-        this.userName = $rootScope.userName;
+        this.userName = $rootScope.nickname;
 
         this.socket = new WebSocket('ws://127.0.0.1:8282');
 
@@ -93,6 +93,13 @@ export default class ChatPageController{
 
         this.socket.send(json);
         this.userWord = '';
+    }
+
+    enterPress(event) {
+        if (event.which == '13' && !event.shiftKey) {
+            event.preventDefault();
+            this.submitWord();
+        }
     }
 }
 
