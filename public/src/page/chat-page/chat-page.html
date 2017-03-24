@@ -1,4 +1,5 @@
-<div class="welcome-messege">欢迎,{{vm.userName}}</div>
+<div class="welcome-messege">欢迎,{{vm.userName}} &nbsp; <button class="btn btn-default" ng-click="vm.logOut()">登出</button></div>
+
 <div class="chat-container">
     <div class="content-container">
         <div class="content-item" ng-repeat="content in vm.chatContent">

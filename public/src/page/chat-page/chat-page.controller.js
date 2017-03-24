@@ -1,6 +1,6 @@
 export default class ChatPageController{
-    constructor($scope, $rootScope) {
-        angular.extend(this, {$scope, $rootScope});
+    constructor($scope, $rootScope, $auth, $state) {
+        angular.extend(this, {$scope, $rootScope, $auth, $state});
 
         var self = this;
 
@@ -101,6 +101,11 @@ export default class ChatPageController{
             this.submitWord();
         }
     }
+
+    logOut() {
+        this.$auth.logout();
+        this.$state.go('login');
+    }
 }
 
-ChatPageController.$inject = ['$scope', '$rootScope'];
+ChatPageController.$inject = ['$scope', '$rootScope', '$auth', '$state'];

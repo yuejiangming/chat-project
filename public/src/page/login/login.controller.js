@@ -1,6 +1,20 @@
 export default class LoginController{
     constructor($auth, $http, $timeout, $scope, $state, $rootScope) {
         angular.extend(this, {$auth, $http, $timeout, $scope, $state, $rootScope});
+
+        console.log($auth.isAuthenticated());
+
+        if ($auth.isAuthenticated()) {
+            $http.get('/validateaccount', {
+               header: {
+                   Authorization: 'Bearer ' + $auth.getToken()
+               } 
+            }).then((res) => {
+                console.log(res);
+                $rootScope.nickname = res.data;
+                $state.go('chatpage');
+            });
+        }
     }
 
     login() {

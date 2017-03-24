@@ -19,10 +19,12 @@ Route::any('/login', 'AuthController@login');
 
 Route::get('/test', 'AuthController@test');
 
-Route::get('{path?}', function() {
-    return view('/build/main');
-})->where('path', '.+');
-
 Route::get('/home', 'HomeController@index');
 
 Route::any('/register', 'AuthController@register');
+
+Route::get('/validateaccount', 'AuthController@verifyAccount');
+
+Route::get('{path?}', function() {
+    return view('/build/main');
+})->where('path', '.+');

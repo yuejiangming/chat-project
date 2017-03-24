@@ -47,4 +47,14 @@ class AuthController extends Controller
 
         return 'success';
     }
+
+    function verifyAccount() {
+        // this will set the token on the object
+        JWTAuth::parseToken();
+
+        // and you can continue to chain methods
+        $user = JWTAuth::parseToken()->authenticate();
+
+        return response()->json($user->nickname);
+    }
 }
