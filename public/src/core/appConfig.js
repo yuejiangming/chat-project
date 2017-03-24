@@ -4,6 +4,6 @@ export default function appConfig($locationProvider, $urlRouterProvider, $authPr
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
 
-    $authProvider.loginUrl = '/auth/login';
+    $authProvider.loginUrl = '/login';
     $authProvider.storageType = 'localStorage'
 };

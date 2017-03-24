@@ -1,0 +1,8 @@
+<form ng-submit="vm.submitSignup()">
+    <label for="">用户名：</label><input ng-model="vm.signUp.userName" type="text"><br>
+    <label for="">用户密码：</label> <input type="password" ng-model="vm.signUp.password"><br>
+    <label for="">用户邮箱：</label> <input type="email" ng-model="vm.signUp.email"><br>
+    <input type="submit" value="提交">
+</form>
+
+<button class="btn btn-default" ui-sref="login">返回登录页</button>

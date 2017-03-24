@@ -1,5 +1,4 @@
-<div class="welcome-messege" ng-if="vm.userName!=null&&vm.userName!=''">欢迎,{{vm.userName}}</div>
-<div class="welcome-messege" ng-if="!(vm.userName!=null&&vm.userName!='')">您未填写姓名，不能使用</div>
+<div class="welcome-messege">欢迎,{{vm.userName}}</div>
 <div class="chat-container">
     <div class="content-container">
         <div class="content-item" ng-repeat="content in vm.chatContent">

@@ -8,18 +8,36 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
-use Tymon\JWTAuth\MiddlewareGetUserFromToken;
-use Auth;
-use Session;
-use Validator;
-use App\Model\Invitation;
-use Gregwar\Captcha\CaptchaBuilder;
+use Illuminate\Support\Facades\Auth;
+
 
 class AuthController extends Controller
 {
     function login(Request $request) {
-        $user = User::first();
+        $credentials = array();
+        $credentials['name'] = $request->input('name');
+        $credentials['password'] = $request->input('password');
 
-        return $token = JWTAuth::fromUser($user);
+        $name = $credentials['name'];
+
+        if ($token = JWTAuth::attempt($credentials)) {
+            return response()->json(compact('token', 'name'));
+        } else {
+            return response()->json(['error' => 'message_not_valid']);
+        }
+    }
+
+    function register(Request $request) {
+        $name = $request->input('name');
+        $password = $request->input('password');
+        $email = $request->input('email');
+
+        $user = new User();
+        $user->name = $name;
+        $user->password = bcrypt($password);
+        $user->email = $email;
+        $user->save();
+
+        return 'success';
     }
 }

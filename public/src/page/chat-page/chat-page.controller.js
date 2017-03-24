@@ -1,12 +1,10 @@
 export default class ChatPageController{
-    constructor($scope) {
-        angular.extend(this, {$scope});
+    constructor($scope, $rootScope) {
+        angular.extend(this, {$scope, $rootScope});
 
         var self = this;
 
-        if(!getUserName()) {
-            return;
-        }
+        this.userName = $rootScope.userName;
 
         this.socket = new WebSocket('ws://127.0.0.1:8282');
 
@@ -71,16 +69,6 @@ export default class ChatPageController{
                 });
             }
         }
-
-        function getUserName() {
-            var name = prompt('请输入您的名字');
-            if (name != null && name != '') {
-                self.userName = name;
-                return true;
-            } else {
-                return false;
-            }
-        }
     }
 
     submitWord() {
@@ -108,4 +96,4 @@ export default class ChatPageController{
     }
 }
 
-ChatPageController.$inject = ['$scope'];
+ChatPageController.$inject = ['$scope', '$rootScope'];

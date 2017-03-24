@@ -1,13 +1,49 @@
 export default class LoginController{
-    constructor($auth, $http) {
-        angular.extend(this, {$auth, $http});
+    constructor($auth, $http, $timeout, $scope, $state, $rootScope) {
+        angular.extend(this, {$auth, $http, $timeout, $scope, $state, $rootScope});
     }
 
     login() {
-        this.$http.get('/login').then(function(data) {
+        var user = {
+            name: this.name,
+            password: this.password
+        }
+
+        this.$auth.login(user).then((res) => {
+            var data = res.data,
+                token;
+
+            if (data.error != null) {
+                this.loginFailed = true;
+                console.log('login failed');
+
+                this.$timeout(() => {
+                    this.loginFailed = false;
+                }, 2000);
+            } else {
+                console.log(data);
+                token = data.token;
+
+                this.$auth.setToken(token);
+
+                this.$rootScope.userName = data.name;
+
+                this.$state.go('chatpage');
+            }
+        }); 
+    }
+
+    validate() {
+        var token = this.$auth.getToken();
+
+        this.$http.get('/validate', {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }).then((data) => {
             console.log(data);
-        });
+        })
     }
 }
 
-LoginController.$inject = ['$auth', '$http'];
+LoginController.$inject = ['$auth', '$http', '$timeout', '$scope', '$state', '$rootScope'];

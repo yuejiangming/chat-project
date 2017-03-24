@@ -1,8 +1,10 @@
 <form ng-submit="vm.login()">
-    name: <input ng-model="vm.email" type="text"> <br>
-    keyword: <input ng-model="vm.password" type="text"> <br>
+    name: <input ng-model="vm.name" type="text"> <br>
+    keyword: <input ng-model="vm.password" type="password"> <br>
     <input type="submit" value="提交">
 </form>
 
+<div ng-if="vm.loginFailed">账户信息输入错误，请重新输入</div>
 
-<button ui-sref="chatpage">进入chat页面</button>
+<button class="btn btn-default" ui-sref="chatpage">进入chat页面</button>
+<button type="button" class="btn btn-default" ui-sref="signup">注册账号</button>
