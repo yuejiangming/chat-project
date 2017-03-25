@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
+use App\Profile;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -56,5 +57,16 @@ class AuthController extends Controller
         $user = JWTAuth::parseToken()->authenticate();
 
         return response()->json($user->nickname);
+    }
+
+    function test() {
+        // $profile = new Profile();
+        // $profile->telnumber = 'ha-ha';
+        // $profile->adress = 'ha-ha';
+        // $profile->personal_comment = 'ha-ha';
+
+        // return User::find(2)->profile()->save($profile);
+
+        return User::find(2)->profile()->get();
     }
 }
