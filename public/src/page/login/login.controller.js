@@ -3,18 +3,6 @@ export default class LoginController{
         angular.extend(this, {$auth, $http, $timeout, $scope, $state, $rootScope});
 
         console.log($auth.isAuthenticated());
-
-        if ($auth.isAuthenticated()) {
-            $http.get('/validateaccount', {
-               header: {
-                   Authorization: 'Bearer ' + $auth.getToken()
-               } 
-            }).then((res) => {
-                console.log(res);
-                $rootScope.nickname = res.data;
-                $state.go('chatpage');
-            });
-        }
     }
 
     login() {
@@ -41,8 +29,9 @@ export default class LoginController{
                 this.$auth.setToken(token);
 
                 this.$rootScope.nickname = data.nickname;
+                localStorage.setItem('profile.nickname', data.nickname);
 
-                this.$state.go('chatpage');
+                this.$state.go('detailpage');
             }
         }); 
     }

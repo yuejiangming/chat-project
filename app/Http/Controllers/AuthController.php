@@ -46,6 +46,13 @@ class AuthController extends Controller
         $user->nickname = $nickname;
         $user->save();
 
+        $profile = new Profile();
+        $profile->adress = '';
+        $profile->telnumber = '';
+        $profile->personal_comment = '';
+
+        $user->profile()->save($profile);
+
         return 'success';
     }
 

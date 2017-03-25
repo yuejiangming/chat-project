@@ -4,7 +4,7 @@ export default class ChatPageController{
 
         var self = this;
 
-        this.userName = $rootScope.nickname;
+        this.userName = $rootScope.nickname || localStorage.getItem('profile.nickname');
 
         this.socket = new WebSocket('ws://127.0.0.1:8282');
 

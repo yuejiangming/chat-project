@@ -3,7 +3,10 @@ export default function route($stateProvider) {
         .state('signup', {
             url: '/signup',
             controller: 'signupController as vm',
-            template: require('./sign-up.html')
+            template: require('./sign-up.html'),
+            params: {
+                needAuthticate: true
+            }
         });
 }
 

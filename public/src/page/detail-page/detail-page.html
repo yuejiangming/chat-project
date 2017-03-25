@@ -1,1 +1,14 @@
-detail page
+<p>个人信息</p>
+
+<label for="">姓名：</label>  <input type="text" ng-model="vm.profile.name"><br>
+<label for="">密码：</label>  <input type="password" ng-model="vm.profile.password"><br>
+<label for="">用户邮箱：</label>  <input type="email" ng-model="vm.profile.email"><br>
+
+<label for="">家庭所在地：</label>  <input type="text" ng-model="vm.profile.adress"><br>
+<label for="">电话号码</label>  <input type="text" ng-model="vm.profile.telNumber"><br>
+<label for="">个人简介</label>  <input type="text" ng-model="vm.profile.selfComment"><br>
+
+<button ng-if="vm.isChanging == false" ng-click="vm.changeProfile()">修改</button>
+<button ng-if="vm.isChanging == true" ng-click="vm.submitChange()">确认</button>
+<button ui-sref="chatpage">进入聊天室</button>
+<button ng-click="vm.logout()">登出</button>
