@@ -38,7 +38,7 @@ export default class ChatPageController{
                         text: message.content
                     }
                     self.chatContent.push(obj);
-
+                    self.$scope.$apply();
                     contentContainer.scrollTop = contentContainer.scrollHeight - contentContainer.clientHeight;
                     break;
 
@@ -49,7 +49,7 @@ export default class ChatPageController{
                         text: '悄悄说: ' + message.content
                     }
                     self.chatContent.push(obj);
-
+                    self.$scope.$apply();
                     contentContainer.scrollTop = contentContainer.scrollHeight - contentContainer.clientHeight;
                     break;
 
