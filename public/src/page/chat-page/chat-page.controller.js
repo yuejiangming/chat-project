@@ -1,6 +1,6 @@
 export default class ChatPageController{
-    constructor($scope, $rootScope, $auth, $state) {
-        angular.extend(this, {$scope, $rootScope, $auth, $state});
+    constructor($scope, $rootScope, $auth, $state, $sce) {
+        angular.extend(this, {$scope, $rootScope, $auth, $state, $sce});
 
         var self = this;
 
@@ -35,8 +35,9 @@ export default class ChatPageController{
                     var obj = {
                         name: message.name,
                         date: message.time,
-                        text: message.content
+                        text: toHtmlContent(message.content)
                     }
+
                     self.chatContent.push(obj);
                     self.$scope.$apply();
                     contentContainer.scrollTop = contentContainer.scrollHeight - contentContainer.clientHeight;
@@ -46,7 +47,7 @@ export default class ChatPageController{
                     var obj = {
                         name: message.name,
                         date: message.time,
-                        text: '悄悄说: ' + message.content
+                        text: toHtmlContent('悄悄说: ' + message.content)
                     }
                     self.chatContent.push(obj);
                     self.$scope.$apply();
@@ -67,6 +68,11 @@ export default class ChatPageController{
                        delete userList[key]; 
                     }
                 });
+            }
+
+            function toHtmlContent(content) {
+                content = content.replace(/\n/g, '<br>');
+                return content.replace(/\s/g, '&nbsp;');
             }
         }
     }
@@ -102,10 +108,9 @@ export default class ChatPageController{
         }
     }
 
-    logOut() {
-        this.$auth.logout();
-        this.$state.go('login');
+    trustWithSCE(string) {
+        return this.$sce.trustAsHtml(string);
     }
 }
 
-ChatPageController.$inject = ['$scope', '$rootScope', '$auth', '$state'];
+ChatPageController.$inject = ['$scope', '$rootScope', '$auth', '$state', '$sce'];

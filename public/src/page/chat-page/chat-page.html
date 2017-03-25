@@ -1,4 +1,4 @@
-<div class="welcome-messege">欢迎,{{vm.userName}} &nbsp; <button class="btn btn-default" ng-click="vm.logOut()">登出</button></div>
+<div class="welcome-messege">欢迎,{{vm.userName}} &nbsp; <button class="btn btn-default" ui-sref="detailpage">个人信息</button></div>
 
 <div class="chat-container">
     <div class="content-container">
@@ -7,8 +7,7 @@
                 <span>{{content.name}}</span>
                 <span>{{content.date}}</span>
             </p>
-            <div class="item-content">
-                {{content.text}}
+            <div class="item-content" ng-bind-html="vm.trustWithSCE(content.text)">
             </div>
         </div>
     </div>
