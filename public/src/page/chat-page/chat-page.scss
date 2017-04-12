@@ -3,7 +3,7 @@
     padding: 0;
     outline: 0;
 }
-.welcome-messege {
+.welcome-message {
     font-size: 20px;
     line-height: 50px;
     padding: 0 50px;
@@ -17,6 +17,7 @@
     margin: 0 auto 0 auto;
 
     .content-container {
+        margin-right: 200px;
         height: 450px;
         overflow: auto;
         border-bottom: 1px solid #aaa;
@@ -31,8 +32,22 @@
                 border-radius: 10px;
                 box-shadow: 0 0 5px 0px #aaa;
             }
+
+            .status-message {
+                padding-left: 15px;
+            }
         }
     }
+
+    .current-user {
+        height: 450px;
+        float: right;
+        width: 200px;
+        border: 1px red solid;
+        padding: 35px 0 0 35px;
+        list-style-type: none;
+    }
+
     .input-container {
         height: 150px;
 

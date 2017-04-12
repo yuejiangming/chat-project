@@ -1,16 +1,26 @@
-<div class="welcome-messege">欢迎,{{vm.userName}} &nbsp; <button class="btn btn-default" ui-sref="detailpage">个人信息</button></div>
+<div class="welcome-message">欢迎,{{vm.userName}} &nbsp; <button class="btn btn-default" ui-sref="detailpage">个人信息</button></div>
 
 <div class="chat-container">
+
+    <ul class="current-user">
+        <li style="margin-bottom: 10px;">当前在线：</li>
+        <li ng-repeat="(id, name) in vm.userTable">
+            <a href="#">{{name}}</a>
+        </li>
+    </ul>
     <div class="content-container">
         <div class="content-item" ng-repeat="content in vm.chatContent">
-            <p class="status-messege">
-                <span>{{content.name}}</span>
+            <p class="status-message">
+                <span>{{content.name}}</span> &nbsp;
                 <span>{{content.date}}</span>
+                <span ng-if="content.type=='public'">说：</span>
+                <span ng-if="content.type=='private'">悄悄说：</span>
             </p>
             <div class="item-content" ng-bind-html="vm.trustWithSCE(content.text)">
             </div>
         </div>
     </div>
+
     <div class="instrument-bar">
         <span>悄悄话</span>
         <select ng-model="vm.selectedUser">
@@ -18,6 +28,7 @@
             <option ng-repeat="(id, name) in vm.userList" value="{{id}}">{{name}}</option>
         </select>
     </div>
+
     <div class="input-container">
         <textarea ng-model="vm.userWord" class="input-area" ng-keypress="vm.enterPress($event)"></textarea>
         <button class="input-button" ng-click="vm.submitWord()">提交</button>

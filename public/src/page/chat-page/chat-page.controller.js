@@ -34,8 +34,9 @@ export default class ChatPageController{
                 case 'message':
                     var obj = {
                         name: message.name,
-                        date: message.time,
-                        text: toHtmlContent(message.content)
+                        date: getFomattedCurrentTime(),
+                        text: toHtmlContent(message.content),
+                        type: 'public'
                     }
 
                     self.chatContent.push(obj);
@@ -46,8 +47,9 @@ export default class ChatPageController{
                 case 'message-private':
                     var obj = {
                         name: message.name,
-                        date: message.time,
-                        text: toHtmlContent('悄悄说: ' + message.content)
+                        date: getFomattedCurrentTime(),
+                        text: toHtmlContent(message.content),
+                        type: 'private'
                     }
                     self.chatContent.push(obj);
                     self.$scope.$apply();
@@ -55,8 +57,8 @@ export default class ChatPageController{
                     break;
 
                 case 'user-list':
-                    self.userList = message.content;
-                    dropSelf(self.userList);
+                    self.userTable = JSON.parse(JSON.stringify(message.content));
+                    self.userList = dropSelf(message.content);
                     break;
             }
             self.$scope.$apply();
@@ -74,6 +76,18 @@ export default class ChatPageController{
                 content = content.replace(/\n/g, '<br>');
                 return content.replace(/\s/g, '&nbsp;');
             }
+        }
+
+        function getFomattedCurrentTime() {
+            var date = new Date(),
+                year = date.getFullYear(),
+                month = date.getMonth() + 1,  //month 在 Date对象中是从零开始的
+                day = date.getDate(),
+                hour = date.getHours(),
+                minute = date.getMinutes(),
+                second = date.getSeconds();
+
+                return year + '年' + month + '月' + day + '日' + ' ' + hour + '点' + minute + '分' + second + '秒';
         }
     }
 
