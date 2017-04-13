@@ -1,12 +1,15 @@
 <p>个人信息</p>
 
-<label for="">姓名：</label>  <input type="text" ng-model="vm.profile.name"><br>
+<label for="">姓名：</label>  <span>{{vm.profile.name}}</span><br>
 
-<label for="">用户邮箱：</label>  <input type="email" ng-model="vm.profile.email"><br>
+<label for="">昵称：</label> <span>{{vm.profile.nickName}}</span><br>
 
-<label for="">家庭所在地：</label>  <input type="text" ng-model="vm.profile.adress"><br>
-<label for="">电话号码</label>  <input type="text" ng-model="vm.profile.telNumber"><br>
-<label for="">个人简介</label>  <input type="text" ng-model="vm.profile.selfComment"><br>
+<label for="">用户邮箱：</label>  <span>{{vm.profile.email}}</span><br>
+
+<label for="">家庭所在地：</label>  <span>{{vm.profile.adress}}</span><br>
+<label for="">电话号码</label>  <span>{{vm.profile.telNumber}}</span><br>
+<label for="">个人简介</label>  <span>{{vm.profile.selfComment}}</span><br>
+
 
 <button ng-click="vm.changePswd()">修改密码</button>
 <button ng-click="vm.changeProfile()">修改账户信息</button>
@@ -14,3 +17,4 @@
 <button ng-click="vm.logout()">登出</button>
 
 <div class="change-password-hint" ng-if="vm.changePswdHint!=null">{{vm.changePswdHint}}</div>
+<div class="change-profile-hint" ng-if="vm.changeProfileNotification">{{vm.changeProfileNotification}}</div>

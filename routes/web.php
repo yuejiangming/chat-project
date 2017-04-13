@@ -29,6 +29,8 @@ Route::any('/changepswd', 'AuthController@changePswd');
 
 Route::any('/profile', 'DataController@getUserProfile');
 
+Route::post('/changeprofile', 'DataController@changeProfile');
+
 Route::get('{path?}', function() {
     return view('/build/main');
 })->where('path', '.+');

@@ -37,7 +37,7 @@ export default class DetailPageController {
     }
 
     changeProfile() {
-         var modalInstance = this.$uibModal.open({
+        var modalInstance = this.$uibModal.open({
             animation: true,
             controller: 'ChangeProfileController as vm',
             template: require('./../../template/change-profile/change-profile.html')
@@ -45,23 +45,31 @@ export default class DetailPageController {
 
         modalInstance.result.then((res) => {
             if (res == 'success') {
-                this.changePswdHint = '修改密码成功！';
-            } else if (res == 'failed') {
-                this.changePswdHint = '失败，原密码错误！';
+                this.changeProfileNotification = "修改个人资料成功！";
+
+                this.$http.get('/profile', {
+                    header: {
+                        Authorization: 'Bearer ' + this.$auth.getToken()
+                    } 
+                }).then((res) => {
+                    this.setAllProfile(res.data);
+                });
+
+                this.$timeout(() => {
+                    this.changeProfileNotification = null;
+                }, 2000);
             }
-            this.$timeout(() => {
-                this.changePswdHint = null;
-            }, 2000);
         });
     }
 
     setAllProfile(data) {
         this.profile.name = data.name;
         this.profile.password = data.password;
+        this.profile.nickName = data.nickname;
         this.profile.email = data.email;
         this.profile.adress = data.adress;
-        this.profile.telnumber = data.telNumber;
-        this.profile.selfComment = data.selfComment;
+        this.profile.telNumber = data.telnumber;
+        this.profile.selfComment = data.personal_comment;
     }
 
     logout() {
