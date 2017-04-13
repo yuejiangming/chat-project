@@ -76,4 +76,19 @@ class AuthController extends Controller
 
         return User::find(2)->profile()->get();
     }
+
+    function changePswd(Request $request) {
+        $oriPswd = $request->input('oriPswd');
+        $curPswd = $request->input('curPswd');
+
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if (Auth::attempt(['name' => $user->name, 'password' => $oriPswd])) {
+            $user->password = bcrypt($curPswd);
+            $user->save();
+            return response()->json(['success' => 'change succeed']);
+        } else {
+            return response()->json(['error' => 'wrong password']);
+        }
+    }
 }

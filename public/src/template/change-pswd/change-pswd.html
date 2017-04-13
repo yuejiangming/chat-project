@@ -1,0 +1,6 @@
+<label for="">原密码</label> <input ng-model="vm.pswd.oriPswd" type="password"> <br>
+<label for="">新密码</label> <input ng-model="vm.pswd.newPswd" type="password"> <br>
+<label for="">新密码确认</label> <input ng-model="vm.pswd.rePswd" type="password"> <br>
+
+<button ng-disabled="vm.isIllegal()" ng-click="vm.submitNewPassword()">确认</button>
+<button ng-click="vm.cancel()">取消</button>

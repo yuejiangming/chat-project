@@ -25,6 +25,8 @@ Route::any('/register', 'AuthController@register');
 
 Route::get('/validateaccount', 'AuthController@verifyAccount');
 
+Route::any('/changepswd', 'AuthController@changePswd');
+
 Route::any('/profile', 'DataController@getUserProfile');
 
 Route::get('{path?}', function() {

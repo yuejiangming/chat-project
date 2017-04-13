@@ -1,6 +1,6 @@
 export default class DetailPageController {
-    constructor($http, $auth, $state) {
-        angular.extend(this, {$http, $auth, $state});
+    constructor($http, $auth, $state, $uibModal, $timeout) {
+        angular.extend(this, {$http, $auth, $state, $uibModal, $timeout});
 
         this.isChanging = false;
         this.profile = {};
@@ -14,6 +14,25 @@ export default class DetailPageController {
         }).then((res) => {
             console.log(res);
             this.setAllProfile(res.data);
+        });
+    }
+
+    changePswd() {
+        var modalInstance = this.$uibModal.open({
+            animation: true,
+            controller: 'ChangePswdController as vm',
+            template: require('./../../template/change-pswd/change-pswd.html')
+        });
+
+        modalInstance.result.then((res) => {
+            if (res == 'success') {
+                this.changePswdHint = '修改密码成功！';
+            } else if (res == 'failed') {
+                this.changePswdHint = '失败，原密码错误！';
+            }
+            this.$timeout(() => {
+                this.changePswdHint = null;
+            }, 2000);
         });
     }
 
@@ -41,4 +60,4 @@ export default class DetailPageController {
     }
 }
 
-DetailPageController.$inject = ['$http', '$auth', '$state'];
+DetailPageController.$inject = ['$http', '$auth', '$state', '$uibModal', '$timeout'];

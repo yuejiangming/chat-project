@@ -14,4 +14,6 @@ angular
     .config(appConfig)
     .run(routeEvent);
 
+require('./template');
 require('./page');
+

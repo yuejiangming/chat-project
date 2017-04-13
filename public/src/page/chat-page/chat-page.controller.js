@@ -12,6 +12,8 @@ export default class ChatPageController{
         this.socket.onclose = onclose;
         this.socket.onmessage = onmessage;
 
+        this.$rootScope.curSocket = this.socket;
+
         this.chatContent = [];
         this.selectedUser = 'all';
 

@@ -6,6 +6,10 @@ export default function routeEvent($rootScope, $auth, $state) {
             event.preventDefault();
             $state.go('login');
         }
+
+        if (fromState.name == 'chatpage') {
+            $rootScope.curSocket.close();
+        }
         console.log(toState);
     });
 }
