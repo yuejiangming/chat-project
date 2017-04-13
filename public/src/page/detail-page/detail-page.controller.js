@@ -37,12 +37,22 @@ export default class DetailPageController {
     }
 
     changeProfile() {
-        this.isChanging = true;
-    }
+         var modalInstance = this.$uibModal.open({
+            animation: true,
+            controller: 'ChangeProfileController as vm',
+            template: require('./../../template/change-profile/change-profile.html')
+        });
 
-    submitChange() {
-        
-        this.isChanging = false;
+        modalInstance.result.then((res) => {
+            if (res == 'success') {
+                this.changePswdHint = '修改密码成功！';
+            } else if (res == 'failed') {
+                this.changePswdHint = '失败，原密码错误！';
+            }
+            this.$timeout(() => {
+                this.changePswdHint = null;
+            }, 2000);
+        });
     }
 
     setAllProfile(data) {

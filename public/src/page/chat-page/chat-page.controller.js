@@ -72,6 +72,8 @@ export default class ChatPageController{
                        delete userList[key]; 
                     }
                 });
+
+                return userList;
             }
 
             function toHtmlContent(content) {
