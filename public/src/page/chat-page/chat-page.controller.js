@@ -5,6 +5,7 @@ export default class ChatPageController{
         var self = this;
 
         this.userName = $rootScope.nickname || localStorage.getItem('profile.nickname');
+        this.account = $rootScope.userName || localStorage.getItem('profile.username');
 
         this.socket = new WebSocket('ws://127.0.0.1:8282');
 
@@ -22,7 +23,8 @@ export default class ChatPageController{
         function onopen() {
             var json = JSON.stringify({
                 type: 'connect',
-                user_name: self.userName
+                user_name: self.userName,
+                account: account
             });
 
             self.socket.send(json);

@@ -26,10 +26,10 @@ export default class LoginController{
                 console.log(data);
                 token = data.token;
 
-                this.$auth.setToken(token);
-
                 this.$rootScope.nickname = data.nickname;
+                this.$rootScope.userName = data.username;
                 localStorage.setItem('profile.nickname', data.nickname);
+                localStorage.setItem('profile.username', data.userName);
 
                 this.$state.go('detailpage');
             }
